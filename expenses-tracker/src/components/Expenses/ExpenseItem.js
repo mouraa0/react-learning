@@ -6,12 +6,13 @@ import ExpenseDate from "./ExpenseDate";
 
 function ExpenseItem(props) {  
     const [title, setTitle] = useState(props.title);
-    
+  
     const clickHandler = () => {
         setTitle('Updated!');
     };
 
     return (
+        <li>
         <Card className="expense-item">
         <ExpenseDate date={props.date}></ExpenseDate>
         <div className="expense-item__description">
@@ -20,6 +21,7 @@ function ExpenseItem(props) {
         </div>
         <button onClick={clickHandler}>Change Title</button>
         </Card>
+        </li>
   );
 }
 
