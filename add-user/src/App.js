@@ -13,14 +13,12 @@ function App() {
       ];
     });
   };
-
-  console.log(users);
   
   return (
-    <div>
+    <>
         <UserForm onAddUser={addUserHandler} />
         <UserList users={users} />
-    </div>
+    </>
   );
 }
 
