@@ -7,18 +7,8 @@ import ErrorModal from '../UI/ErrorModal';
 const UserForm = (props) => {
     const nameInputRef = useRef();
     const ageInputRef = useRef();
-    
-    const [enteredUsername, setUsername] = useState('');
-    const [enteredAge, setAge] = useState('');
+
     const [error, setError] = useState('');
-
-    const addUsernameHandler = (event) => {
-        setUsername(event.target.value);
-    };
-
-    const addAgeHandler = (event) => {
-        setAge(event.target.value);
-    };
 
     const formSubmitHandler = (event) => {
         event.preventDefault();
@@ -41,15 +31,17 @@ const UserForm = (props) => {
             return;
         }
         const newUserData = {
-            username: enteredUsername,
-            age: enteredAge,
+            username: enteredName,
+            age: enteredUserAge,
             id: Math.random().toString(),
         };
 
         props.onAddUser(newUserData);
 
-        setUsername('');
-        setAge('');
+        nameInputRef.current.value = '';
+        ageInputRef.current.value = '';
+
+
     };
 
     const errorHandler = () => {
@@ -64,11 +56,11 @@ const UserForm = (props) => {
                     <div className="new-user">
                         <div className="new-user__control">
                             <label>Username</label>
-                            <input id="username" type="text" value={enteredUsername} onChange={addUsernameHandler} ref={nameInputRef} />
+                            <input id="username" type="text" ref={nameInputRef} />
                         </div>
                         <div className="new-user__control">
                             <label>Age</label>
-                            <input id="age" type="number" value={enteredAge} onChange={addAgeHandler} ref={ageInputRef} />
+                            <input id="age" type="number" ref={ageInputRef} />
                         </div>      
                     </div>
                     <div className="new-user__actions">
